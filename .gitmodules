@@ -1,0 +1,6 @@
+[submodule "Isaac-GR00T-mojo"]
+	path = Isaac-GR00T-mojo
+	url = git@github.com:naren200/Isaac-GR00T-mojo.git
+[submodule "lerobot-mojo"]
+	path = lerobot-mojo
+	url = git@github.com:naren200/lerobot-mojo.git
