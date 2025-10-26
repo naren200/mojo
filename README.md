@@ -10,6 +10,45 @@ The `lerobot-mojo` directory contains the LeRobot framework for training and eva
 
 ### Installation
 
+#### Option 1: Docker Installation (Recommended for Jetson Thor)
+
+The easiest way to get started, especially on **NVIDIA Jetson Thor** devices, is using Docker. This approach provides a pre-configured environment with all dependencies.
+
+1. **Prerequisites:**
+   - Docker and Docker Compose installed
+   - NVIDIA Docker runtime (nvidia-docker2)
+   - Base image pulled: `docker pull johnnync/lerobot:r38.2.aarch64-cu130-24.04`
+
+2. **Set up environment variables:**
+   Create a `.env` file in the `lerobot-mojo` directory or export these variables:
+   ```bash
+   export HF_TOKEN=your_huggingface_token_here
+   export HF_USER=your_huggingface_username
+   export DISPLAY=:0  # For GUI applications
+   ```
+
+3. **Build and run with Docker Compose:**
+   ```bash
+   cd lerobot-mojo
+   docker-compose build
+   docker-compose up -d
+   ```
+
+4. **Enter the container:**
+   ```bash
+   docker exec -it lerobot-mojo bash
+   ```
+
+The Docker setup includes:
+- PyTorch 2.9.0 + CUDA 13.0 (optimized for Jetson Thor)
+- LeRobot with Feetech motor support
+- Orbbec camera SDK (pyorbbecsdk) built from source
+- GPU acceleration with NVIDIA runtime
+- USB device access for robot hardware
+- HuggingFace cache persistence
+
+#### Option 2: Manual Installation
+
 1. Navigate to the lerobot-mojo directory:
 ```bash
 cd lerobot-mojo
@@ -42,6 +81,13 @@ wandb login
 ```
 
 ### Training a Policy
+
+**Note:** If using Docker, make sure you're inside the container first:
+```bash
+docker exec -it lerobot-mojo bash
+```
+
+All subsequent commands should be run from within the container or your activated virtual environment.
 
 #### Basic Training Example
 
